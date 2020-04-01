@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.prueba.people.RutVerificador;
 import com.prueba.people.entity.Student;
 import com.prueba.people.service.IStudentService;
 
@@ -54,7 +56,7 @@ public class StudentRestController {
 		   
 		 	String rutFormat = student.getRut().replace(".", "");
 		 	
-		 	 	if(age) {
+		 	 	if(age&&RutVerificador.validar(rutFormat)) {
 		 	nuevo.setAge(student.getAge());
 		 	nuevo.setRut(rutFormat);
 		 	  studentService.updateStudent(nuevo);
